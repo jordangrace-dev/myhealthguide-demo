@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-8 items-start">
+   <div class="grid grid-cols-[560px_minmax(320px,1fr)] gap-8 items-start">
       <div class="rounded-3xl border bg-white p-6 shadow-xl">
         <div class="mb-6 flex items-center justify-between">
           <div>
@@ -41,7 +41,23 @@
         <div class="flex h-[520px] items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-[#EEF2F0] to-[#F7F4EF]">
           <div class="relative h-[480px] w-[250px] rounded-[2.5rem] border-[10px] border-slate-900 bg-slate-900 shadow-2xl">
             <div class="absolute left-1/2 top-0 h-6 w-24 -translate-x-1/2 rounded-b-2xl bg-slate-900"></div>
-            <div id="phoneScreen" class="h-full w-full overflow-hidden rounded-[2rem] bg-[#F7F4EF]"></div>
+            <div id="carousel" style="position:relative; width:100%; height:100%;">
+  
+  <div id="phoneScreen" class="h-full w-full overflow-hidden rounded-[2rem] bg-[#F7F4EF]"></div>
+
+  <button onclick="prevSlide()" 
+    style="position:absolute; left:10px; top:50%; transform:translateY(-50%);
+           background:white; border-radius:999px; padding:8px 12px;">
+    ‹
+  </button>
+
+  <button onclick="nextSlide()" 
+    style="position:absolute; right:10px; top:50%; transform:translateY(-50%);
+           background:white; border-radius:999px; padding:8px 12px;">
+    ›
+  </button>
+
+</div>
           </div>
         </div>
       </div>
