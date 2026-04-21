@@ -198,6 +198,26 @@
 
     let index = 0;
 
+    const screens = [
+  pages[0].screen,
+  pages[1].screen,
+  pages[2].screen,
+  pages[3].screen
+];
+
+function showSlide() {
+  document.getElementById("phoneScreen").innerHTML = screens[index];
+}
+
+function nextSlide() {
+  index = (index + 1) % screens.length;
+  showSlide();
+}
+
+function prevSlide() {
+  index = (index - 1 + screens.length) % screens.length;
+  showSlide();
+}
     function renderPage() {
       const page = pages[index];
       document.getElementById("phoneScreen").innerHTML = page.screen;
