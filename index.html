@@ -1,22 +1,20 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>myHealthGuide Demo</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: #F7F4EF; }
+  </style>
 </head>
-
-<body class="bg-[#F7F4EF] text-slate-900 font-sans">
-
-  <!-- HEADER -->
-
+<body class="text-slate-900">
   <div class="max-w-6xl mx-auto px-6 py-10">
     <div class="mb-8 rounded-3xl border bg-white p-6 shadow-sm">
-      <h1 class="text-4xl font-semibold text-center text-[#476B3F]">
+      <div class="text-center text-3xl md:text-4xl font-semibold text-[#476B3F]">
         Welcome to the myHealthGuide Experience
-      </h1>
+      </div>
       <div class="mt-4 flex justify-center">
         <div class="rounded-full bg-[#E8F0E4] px-4 py-2 text-sm font-medium text-[#476B3F]">
           ease of use · clinical value · personalized insights
@@ -24,48 +22,185 @@
       </div>
     </div>
 
-```
-<!-- MAIN -->
-<div class="grid grid-cols-2 gap-8 items-start">
+    <div class="grid grid-cols-2 gap-8 items-start">
+      <div class="rounded-3xl border bg-white p-6 shadow-xl">
+        <div class="mb-6 flex items-center justify-between">
+          <div>
+            <div class="text-sm font-medium text-[#476B3F]">Interactive page carousel</div>
+            <div class="text-sm text-slate-500">Use the arrows to rotate through the experience</div>
+          </div>
+          <div class="flex gap-2">
+            <button id="prevBtn" class="rounded-full border px-3 py-2 bg-white">←</button>
+            <button id="nextBtn" class="rounded-full border px-3 py-2 bg-white">→</button>
+          </div>
+        </div>
 
-  <!-- LEFT: SCREEN -->
-  <div class="bg-white rounded-3xl shadow-xl p-6 flex justify-center">
-    <img src="https://via.placeholder.com/250x480" class="rounded-3xl" />
+        <div class="flex h-[520px] items-center justify-center rounded-[1.5rem] bg-gradient-to-br from-[#EEF2F0] to-[#F7F4EF]">
+          <div class="relative h-[480px] w-[250px] rounded-[2.5rem] border-[10px] border-slate-900 bg-slate-900 shadow-2xl">
+            <div class="absolute left-1/2 top-0 h-6 w-24 -translate-x-1/2 rounded-b-2xl bg-slate-900"></div>
+            <div id="phoneScreen" class="h-full w-full overflow-hidden rounded-[2rem] bg-[#F7F4EF]"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-[2rem] border bg-white shadow-xl">
+        <div class="p-6">
+          <div id="pageTitlePill" class="mb-3 inline-flex w-fit items-center gap-2 rounded-full bg-[#E8F0E4] px-3 py-1 text-sm font-medium text-[#476B3F]"></div>
+          <div id="pageTag" class="text-3xl leading-tight text-slate-900 font-semibold"></div>
+          <p id="pageDescription" class="mt-6 text-base leading-7 text-slate-600"></p>
+          <div id="pageBullets" class="mt-6 grid gap-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <div class="rounded-[2rem] border border-slate-900 bg-black shadow-sm p-6">
+        <div class="text-xl font-semibold text-white">Join the beta</div>
+        <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
+          Try a calmer, easier way to track what matters, discover more personal insights, and bring something more useful into care conversations.
+        </p>
+        <div class="mt-5 flex flex-col gap-3">
+          <button class="w-full rounded-2xl bg-[#7C9B6C] py-6 text-lg font-semibold text-white">Download Beta App</button>
+          <button class="w-full rounded-2xl bg-[#C97A5A] py-5 text-base text-white">Download Beta Test Guide</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- RIGHT: DESCRIPTION -->
-  <div class="bg-white rounded-3xl shadow-xl p-6">
-    <h2 class="text-2xl font-semibold mb-4 text-[#476B3F]">
-      Track less, learn more
-    </h2>
-    <p class="text-slate-600 leading-7">
-      Sleep, mood, and activity are simple enough to log consistently,
-      but meaningful enough to support real clinical insight. This creates
-      a personal system of understanding, not just tracking.
-    </p>
-  </div>
+  <script>
+    const pages = [
+      {
+        title: "Signals",
+        tag: "Track less, learn more",
+        description: "Sleep, mood, and activity are simple enough to log consistently, but meaningful enough to support real clinical insight. Instead of tracking everything, users focus on the signals that reflect how they are actually doing.",
+        bullets: ["Simple daily check-ins", "Personalized over time", "Clinical value without overload"],
+        screen: `
+          <div class="h-full w-full bg-[#F7F4EF] p-4">
+            <div class="mb-3 flex items-start justify-between">
+              <div>
+                <div class="text-2xl font-semibold text-slate-800">Daily Signals</div>
+                <div class="mt-1 text-xs italic text-[#8B8A84]">A few quick signals each day build a clearer picture over time.</div>
+              </div>
+              <div class="rounded-full bg-[#ECE6DD] px-3 py-1 text-[10px] text-[#8B8A84]">0 of 3 logged</div>
+            </div>
+            <div class="space-y-3">
+              <div class="rounded-2xl border border-[#C9D7E3] bg-white p-3">
+                <div class="mb-2 text-sm font-semibold text-[#6BA8D6]">Sleep</div>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs text-[#6E6C66]">
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Restful</div>
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">OK</div>
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Poor</div>
+                </div>
+              </div>
+              <div class="rounded-2xl border border-[#E6C98D] bg-white p-3">
+                <div class="mb-2 text-sm font-semibold text-[#C7972E]">Mood</div>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs text-[#6E6C66]">
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Good</div>
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Neutral</div>
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Low</div>
+                </div>
+              </div>
+              <div class="rounded-2xl border border-[#B9D0B4] bg-white p-3">
+                <div class="mb-2 text-sm font-semibold text-[#6E9A5D]">Activity</div>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs text-[#6E6C66]">
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Active</div>
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Light</div>
+                  <div class="rounded-xl border bg-[#F7F4EF] py-2">Sedentary</div>
+                </div>
+              </div>
+            </div>
+          </div>`
+      },
+      {
+        title: "Insight",
+        tag: "Patterns, surfaced gently",
+        description: "Insight gives users something back for their effort. Instead of a wall of data, it turns repeated entries into plain-language observations that feel personal, calm, and worth coming back for.",
+        bullets: ["Early pattern recognition", "Easy to understand", "Encourages reflection"],
+        screen: `
+          <div class="h-full w-full bg-[#F7F4EF] p-4">
+            <div class="text-3xl font-semibold text-slate-800">Insights</div>
+            <div class="mt-4 rounded-2xl border bg-[#F1EEE9] p-4">
+              <div class="text-lg font-medium text-slate-700">Keep logging to build useful insights.</div>
+              <div class="mt-2 text-sm text-[#9A968D]">Your insights are still forming.</div>
+            </div>
+            <div class="mt-4 rounded-[2rem] bg-white p-5 shadow-sm ring-1 ring-[#ECE6DD]">
+              <div class="text-xs font-semibold uppercase tracking-[0.18em] text-[#88A776]">What we noticed</div>
+              <div class="mt-3 text-xl font-medium leading-7 text-slate-800">Your signals are being tracked.</div>
+              <div class="mt-3 text-sm leading-6 text-[#66645F]">You have been logging consistently. Keep going — patterns take a little time to emerge.</div>
+            </div>
+          </div>`
+      },
+      {
+        title: "Medications",
+        tag: "Support for daily routines",
+        description: "Medication support stays practical and easy to use. Users can review medications, manage reminders, and take quick actions without the page feeling cluttered or clinical.",
+        bullets: ["Organized medication view", "Quick reminder controls", "Supports adherence with less friction"],
+        screen: `
+          <div class="h-full w-full bg-[#F7F4EF] p-4">
+            <div class="mb-4 flex items-start justify-between">
+              <div class="text-3xl font-semibold text-slate-800">Medications</div>
+              <div class="rounded-full bg-[#7C9B6C] px-4 py-2 text-xs font-semibold text-white">+ Add New Med</div>
+            </div>
+            <div class="rounded-[2rem] border border-[#E7B79D] bg-white p-4">
+              <div class="flex items-start justify-between">
+                <div>
+                  <div class="text-xl font-semibold text-slate-800">Lisinopril</div>
+                  <div class="text-sm text-[#8B8A84]">10mg</div>
+                </div>
+                <div class="rounded-xl bg-[#F7E2D9] px-3 py-2 text-xs font-semibold text-[#D26648]">Remove</div>
+              </div>
+              <div class="mt-4 rounded-xl bg-[#F1EEE9] px-4 py-3 text-sm text-[#66645F]">Take with water</div>
+              <div class="mt-4 grid grid-cols-3 gap-2 text-center text-xs text-[#5C5A55]">
+                <div class="rounded-xl border bg-white py-3">Taken</div>
+                <div class="rounded-xl border bg-white py-3">Delayed</div>
+                <div class="rounded-xl border bg-white py-3">Skipped</div>
+              </div>
+            </div>
+          </div>`
+      },
+      {
+        title: "Visit",
+        tag: "Bring something useful to care",
+        description: "Visit prep turns daily engagement into something tangible. It helps users organize recent information into a clearer, more personalized summary they can actually use in a care conversation.",
+        bullets: ["Visible clinical value", "Personalized summary building", "Easier appointment preparation"],
+        screen: `
+          <div class="h-full w-full bg-[#F7F4EF] p-4">
+            <div class="text-3xl font-semibold text-slate-800">Visit</div>
+            <div class="mt-4 rounded-[2rem] bg-[#476B3F] p-5 text-white">
+              <div class="text-xs font-semibold uppercase tracking-[0.18em] text-[#DDE7D4]">Your Next Visit</div>
+              <div class="mt-3 text-3xl font-semibold leading-none">April 21 2026</div>
+              <div class="mt-2 text-lg">1 pm</div>
+              <div class="mt-1 text-sm text-[#DDE7D4]">We have started organizing your recent activity for this visit.</div>
+              <div class="mt-5 rounded-2xl bg-white px-4 py-4 text-center text-lg font-semibold text-[#35542E]">View visit summary</div>
+            </div>
+          </div>`
+      }
+    ];
 
-</div>
+    let index = 0;
 
-<!-- BETA SECTION -->
-<div class="mt-10 bg-black rounded-3xl p-6 text-white">
-  <h3 class="text-xl font-semibold">Join the beta</h3>
-  <p class="mt-2 text-slate-300">
-    Try a calmer, easier way to track what matters and gain meaningful insights.
-  </p>
+    function renderPage() {
+      const page = pages[index];
+      document.getElementById("phoneScreen").innerHTML = page.screen;
+      document.getElementById("pageTitlePill").textContent = page.title;
+      document.getElementById("pageTag").textContent = page.tag;
+      document.getElementById("pageDescription").textContent = page.description;
+      document.getElementById("pageBullets").innerHTML = page.bullets
+        .map(item => `<div class="rounded-2xl bg-[#F8FAF8] px-4 py-4 text-sm text-slate-700 ring-1 ring-[#E5EBE3]">${item}</div>`)
+        .join("");
+    }
 
-  <div class="mt-5 flex flex-col gap-3">
-    <button class="w-full bg-[#7C9B6C] py-4 rounded-2xl text-lg font-semibold">
-      Download Beta App
-    </button>
-    <button class="w-full bg-[#C97A5A] py-4 rounded-2xl text-lg font-semibold">
-      Download Beta Test Guide
-    </button>
-  </div>
-</div>
-```
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      index = (index - 1 + pages.length) % pages.length;
+      renderPage();
+    });
 
-  </div>
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      index = (index + 1) % pages.length;
+      renderPage();
+    });
 
+    renderPage();
+  </script>
 </body>
 </html>
