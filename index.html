@@ -196,7 +196,16 @@
 ];
 
 function showSlide() {
-  document.getElementById("phoneScreen").innerHTML = screens[index];
+  const container = document.getElementById("phoneScreen");
+  
+  container.style.opacity = 0;
+
+  setTimeout(() => {
+    container.innerHTML = screens[index];
+    container.style.opacity = 1;
+  }, 150);
+
+  renderPage(); // keeps description perfectly in sync
 }
 
 function nextSlide() {
