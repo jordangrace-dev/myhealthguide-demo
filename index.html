@@ -227,8 +227,8 @@
 
 function showSlide() {
   const container = document.getElementById("phoneScreen");
-  
-  container.style.opacity = 0;
+  container.style.transition = "opacity 0.25s ease";
+container.style.opacity = 0;
 
   setTimeout(() => {
     container.innerHTML = screens[index];
