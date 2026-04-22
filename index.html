@@ -258,17 +258,9 @@ function prevSlide() {
         .join("");
     }
 
-    document.getElementById("prevBtn").addEventListener("click", () => {
-      index = (index - 1 + pages.length) % pages.length;
-      renderPage();
-    });
+   document.getElementById("prevBtn").addEventListener("click", prevSlide);
+   document.getElementById("nextBtn").addEventListener("click", nextSlide);
 
-    document.getElementById("nextBtn").addEventListener("click", () => {
-      index = (index + 1) % pages.length;
-      renderPage();
-    });
-
-   renderPage();
 showSlide();
   </script>
 </body>
