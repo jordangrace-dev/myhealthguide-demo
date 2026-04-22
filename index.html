@@ -230,16 +230,24 @@
 ];
 
 function showSlide() {
-  const container = document.getElementById("phoneScreen");
-  container.style.transition = "opacity 0.25s ease";
-container.style.opacity = 0;
+  const center = document.getElementById("phoneScreen");
+  const prev = document.getElementById("prevScreen");
+  const next = document.getElementById("nextScreen");
+
+  const prevIndex = (index - 1 + screens.length) % screens.length;
+  const nextIndex = (index + 1) % screens.length;
+
+  center.style.transition = "opacity 0.25s ease";
+  center.style.opacity = 0;
 
   setTimeout(() => {
-    container.innerHTML = screens[index];
-    container.style.opacity = 1;
+    center.innerHTML = screens[index];
+    prev.innerHTML = screens[prevIndex];
+    next.innerHTML = screens[nextIndex];
+    center.style.opacity = 1;
   }, 150);
 
-  renderPage(); // keeps description perfectly in sync
+  renderPage();
 }
 
 function nextSlide() {
