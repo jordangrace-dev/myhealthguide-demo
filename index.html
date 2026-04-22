@@ -226,21 +226,14 @@
 ];
 
 function showSlide() {
-  const center = document.getElementById("phoneScreen");
-  const prev = document.getElementById("prevScreen");
-  const next = document.getElementById("nextScreen");
+  const container = document.getElementById("phoneScreen");
 
-  const prevIndex = (index - 1 + screens.length) % screens.length;
-  const nextIndex = (index + 1) % screens.length;
-
-  center.style.transition = "opacity 0.25s ease";
-  center.style.opacity = 0;
+  container.style.transition = "opacity 0.25s ease";
+  container.style.opacity = 0;
 
   setTimeout(() => {
-    center.innerHTML = screens[index];
-    prev.innerHTML = screens[prevIndex];
-    next.innerHTML = screens[nextIndex];
-    center.style.opacity = 1;
+    container.innerHTML = screens[index];
+    container.style.opacity = 1;
   }, 150);
 
   renderPage();
