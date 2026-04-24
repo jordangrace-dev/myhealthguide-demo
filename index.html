@@ -108,6 +108,55 @@
   <script>
     const pages = [
       {
+  title: "Home",
+  tag: "Start in seconds",
+  description: "Create a profile or add an appointment in under 5 seconds. myHealthGuide gets you organized instantly so you can focus on what matters.",
+  bullets: ["Quick profile setup", "Add an appointment fast", "Be ready for your visit"],
+  screen: `
+  <div class="h-full w-full bg-[#F7F4EF] p-4">
+    
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center gap-2">
+        <img src="https://i.imgur.com/7yUvePI.png" class="w-8 h-8"/>
+        <div class="text-lg font-semibold text-[#2F5E3A]">myHealthGuides</div>
+      </div>
+      <div class="w-8 h-8 rounded-full bg-[#B7C7B0] flex items-center justify-center text-sm font-medium text-white">J</div>
+    </div>
+
+    <!-- Greeting -->
+    <div class="text-sm text-[#6B7280]">Good morning,</div>
+    <div class="text-2xl font-semibold text-[#1F2937]">Jordan</div>
+    <div class="text-xs text-[#9CA3AF] mb-3">Tuesday, April 21, 2026</div>
+
+    <!-- Banner -->
+    <div class="bg-[#DCE7D9] text-[#2F5E3A] text-sm rounded-xl px-3 py-2 mb-3 flex justify-between items-center">
+      <span>Preparation started — we’ll help you build a meaningful summary.</span>
+      <span class="text-lg">×</span>
+    </div>
+
+    <!-- Visit Card -->
+    <div class="bg-[#2F5E3A] text-white rounded-2xl p-4 mb-3">
+      <div class="text-xs uppercase opacity-70 mb-1">Upcoming Visit</div>
+      <div class="text-sm mb-2">April 21, 2026 at 1 pm</div>
+      <div class="text-base font-medium mb-3">You have an upcoming visit — start preparing now.</div>
+      <div class="bg-[#5A7D5F] rounded-xl py-2 text-center text-sm">Log Signals</div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex gap-3">
+      <div class="flex-1 border-2 border-[#2F5E3A] rounded-xl py-2 text-center text-sm font-medium text-[#2F5E3A]">
+        Profile add/edit
+      </div>
+      <div class="flex-1 bg-[#2F5E3A] rounded-xl py-2 text-center text-sm font-medium text-white">
+        Add Appointment
+      </div>
+    </div>
+
+  </div>
+  `
+},
+      {
         title: "Signals",
         tag: "Track less, learn more",
         description: "Sleep, mood, and activity are simple enough to log consistently, but meaningful enough to support real clinical insight. Instead of tracking everything, users focus on the signals that reflect how they are actually doing.",
